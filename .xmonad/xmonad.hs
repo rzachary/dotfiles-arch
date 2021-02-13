@@ -117,12 +117,12 @@ windowCount = gets $ Just . show . length . W.integrate' . W.stack . W.workspace
 
 myStartupHook :: X ()
 myStartupHook = do
-					spawnOnce "lxsession &"
-					spawnOnce "nitrogen --restore &"
-					spawnOnce "picom --experimental-backends &"
-					spawnOnce "nm-applet &"
+          spawnOnce "lxsession &"
+          spawnOnce "nitrogen --restore &"
+          spawnOnce "picom --experimental-backends &"
+          spawnOnce "nm-applet &"
           spawnOnce "trayer --edge top --align right --widthtype request --padding 6 --SetDockType true --SetPartialStrut true --expand true --monitor 1 --transparent true --alpha 0 --tint 0x282c34  --height 22 &"
-					setWMName "LG3D"
+          setWMName "LG3D"
 
 myColorizer :: Window -> Bool -> X (String, String)
 myColorizer = colorRangeFromClassName
@@ -176,7 +176,7 @@ treeselectAction a - TS.treeselectAction a
        ]
     , Node (TS.TSNode "+ Graphics" "graphics programs" (return ()))
        [ Node (TS.TSNode "Gimp" "GNU image manipulation program" (spawn "gimp")) []
-       , Node (TS.TSNode "Inkscape" "An SVG editing program" (spawn "inkscape")) []
+       , Node (TS.TSNode "Inkscape" "An SVG editinxg program" (spawn "inkscape")) []
        , Node (TS.TSNode "Shotwell" "Photo management program" (spawn "shotwell")) []
        ]
     , Node (TS.TSNode "+ Internet" "internet and web programs" (return ()))
@@ -730,19 +730,6 @@ myKeys home =
         , ("M-u h", spawn "mocp --previous")
         , ("M-u <Space>", spawn "mocp --toggle-pause")
 
-    -- Emacs (CTRL-e followed by a key)
-        , ("C-e e", spawn "emacsclient -c -a 'emacs'")                            -- start emacs
-        , ("C-e b", spawn "emacsclient -c -a 'emacs' --eval '(ibuffer)'")         -- list emacs buffers
-        , ("C-e d", spawn "emacsclient -c -a 'emacs' --eval '(dired nil)'")       -- dired emacs file manager
-        , ("C-e i", spawn "emacsclient -c -a 'emacs' --eval '(erc)'")             -- erc emacs irc client
-        , ("C-e m", spawn "emacsclient -c -a 'emacs' --eval '(mu4e)'")            -- mu4e emacs email client
-        , ("C-e n", spawn "emacsclient -c -a 'emacs' --eval '(elfeed)'")          -- elfeed emacs rss client
-        , ("C-e s", spawn "emacsclient -c -a 'emacs' --eval '(eshell)'")          -- eshell within emacs
-        , ("C-e t", spawn "emacsclient -c -a 'emacs' --eval '(mastodon)'")        -- mastodon within emacs
-        , ("C-e v", spawn "emacsclient -c -a 'emacs' --eval '(+vterm/here nil)'") -- vterm within emacs
-        -- emms is an emacs audio player. I set it to auto start playing in a specific directory.
-        , ("C-e a", spawn "emacsclient -c -a 'emacs' --eval '(emms)' --eval '(emms-play-directory-tree \"~/Music/Non-Classical/70s-80s/\")'")
-
     -- Multimedia Keys
         , ("<XF86AudioPlay>", spawn (myTerminal ++ "mocp --play"))
         , ("<XF86AudioPrev>", spawn (myTerminal ++ "mocp --previous"))
@@ -763,19 +750,21 @@ myKeys home =
         ++ [("M-S-s " ++ k, S.selectSearch f) | (k,f) <- searchList ]
     -- The following lines are needed for named scratchpads.
           where nonNSP          = WSIs (return (\ws -> W.tag ws /= "nsp"))
- 
-
-
-
+                nonEmptyNonNSP  = WSIs (return (\ws -> isJust (W.stack ws) && W.tag ws /= "nsp"))
 
 main :: IO ()
 main = do
     home <- getHomeDirectory
-		-- Launch xmobar instances
-		xmproc0 <- spawnPipe "xmobar -x 0 $HOME/.config/xmobar/xmobarrc0"
-		-- the main attracion xmonad
-		xmonad $ ewnh def
-			{ manageHook = ( isFullscreen --> doFullFloat ) <+> myManageHook <+> manageDocks
+    -- Launching three instances of xmobar on their monitors.
+    xmproc0 <- spawnPipe "xmobar -x 0 $HOME/.config/xmobar/xmobarrc0"
+    -- the xmonad, ya know...what the WM is named after!
+    xmonad $ ewmh def
+        { manageHook = ( isFullscreen --> doFullFloat ) <+> myManageHook <+> manageDocks
+        -- Run xmonad commands from command line with "xmonadctl command". Commands include:
+        -- shrink, expand, next-layout, default-layout, restart-wm, xterm, kill, refresh, run,
+        -- focus-up, focus-down, swap-up, swap-down, swap-master, sink, quit-wm. You can run
+        -- "xmonadctl 0" to generate full list of commands written to ~/.xsession-errors.
+        -- To compile xmonadctl: ghc -dynamic xmonadctl.hs
         , handleEventHook    = serverModeEventHookCmd
                                <+> serverModeEventHook
                                <+> serverModeEventHookF "XMONAD_PRINT" (io . putStrLn)
@@ -800,4 +789,4 @@ main = do
                         , ppExtras  = [windowCount]                           -- # of windows current workspace
                         , ppOrder  = \(ws:l:t:ex) -> [ws,l]++ex++[t]
                         }
-			} `additionalKeysP` myKeys home
+        } `additionalKeysP` myKeys home
