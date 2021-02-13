@@ -3,6 +3,7 @@
 -- Imports
 --Base
 import XMonad
+import System.Directory
 import System.IO (hPutStrLn)
 import System.Exit (exitSuccess)
 import qualified XMonad.StackSet as W
@@ -77,7 +78,7 @@ import Text.Printf
 
 --Util
 import XMonad.Util.NamedScratchpad
-import XMonad.Util.Run(safeSpawn, unsafeSpawn, runInTerm, spawnPipe)
+import XMonad.Util.Run(runProcessWithInput, safeSpawn, unsafeSpawn, runInTerm, spawnPipe)
 import XMonad.Util.EZConfig(additionalKeys)
 import XMonad.Util.SpawnOnce
 
@@ -778,7 +779,7 @@ main = do
         , normalBorderColor  = myNormColor
         , focusedBorderColor = myFocusColor
         , logHook = workspaceHistoryHook <+> myLogHook <+> dynamicLogWithPP xmobarPP
-                        { ppOutput = \x -> hPutStrLn xmproc0 x  >> hPutStrLn xmproc1 x  >> hPutStrLn xmproc2 x
+                        { ppOutput = \x -> hPutStrLn xmproc0 x
                         , ppCurrent = xmobarColor "#98be65" "" . wrap "[" "]" -- Current workspace in xmobar
                         , ppVisible = xmobarColor "#98be65" ""                -- Visible but not current workspace
                         , ppHidden = xmobarColor "#82AAFF" "" . wrap "*" ""   -- Hidden workspaces in xmobar
