@@ -79,7 +79,7 @@ import Text.Printf
 --Util
 import XMonad.Util.NamedScratchpad
 import XMonad.Util.Run(runProcessWithInput, safeSpawn, unsafeSpawn, runInTerm, spawnPipe)
-import XMonad.Util.EZConfig(additionalKeys)
+import XMonad.Util.EZConfig(additionalKeys, additionalKeysP)
 import XMonad.Util.SpawnOnce
 
 -- Declared Variables
