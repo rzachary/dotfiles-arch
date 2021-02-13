@@ -167,7 +167,7 @@ myAppGrid = [ ("Audacity", "audacity")
                  ]
 
 treeselectAction :: TS.TSConfig (X()) -> X ()
-treeselectAction a - TS.treeselectAction a
+treeselectAction a = TS.treeselectAction a
    [ Node (TS.TSNode "+ Accessories" "Accessory applications" (return ()))
        [ Node (TS.TSNode "Archive Manager" "Tool for archived packages" (spawn "file-roller")) []
        , Node (TS.TSNode "Calculator" "Gui version of qalc" (spawn "qalculate-gtk")) []
