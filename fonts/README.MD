@@ -1,2 +1,15 @@
 # Fonts
-I use fonts here is the list of them
+
+This is a list of fonts that I use regularly
+
+## Fira Code
+
+## Inconsolata
+
+## Mononoki
+
+## Sauce Code Pro
+
+## Roboto
+
+## Ubuntu
