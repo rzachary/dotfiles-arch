@@ -756,7 +756,7 @@ myKeys home =
 main :: IO ()
 main = do
     home <- getHomeDirectory
-    -- Launching three instances of xmobar on their monitors.
+    -- Launching a single instances of xmobar on their monitors.
     xmproc0 <- spawnPipe "xmobar -x 0 $HOME/.config/xmobar/xmobarrc0"
     -- the xmonad, ya know...what the WM is named after!
     xmonad $ ewmh def

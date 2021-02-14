@@ -1,7 +1,7 @@
 #!/bin/sh
 
 # lxsession install
-sudo pacman -S lxsession
+sudo pacman -S lxsession lxde-common
 
 # nm-applet install
 sudo pacman -S network-manager-applet
