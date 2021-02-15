@@ -3,6 +3,9 @@
 # Install additional Teminals
 sudo pacman -S alacritty
 
+# Install Exa
+sudo pacman -S exa
+
 # Install Multiplexer
 sudo pacman -S tmux
 
