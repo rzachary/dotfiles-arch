@@ -1,8 +1,9 @@
 # dotfiles-arch
+
 Dotfiles and Config for Arch Linux
 
 ______ _      ______
-| __\ | |    |___  /
+| | __\ | |    |_ __  /
 | |_/ / |       / /
 |    /| |      / /
 | |\ \| |____./ /___
