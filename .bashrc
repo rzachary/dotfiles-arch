@@ -70,7 +70,32 @@ alias pscpu10='ps auxf | sort -nr -k 3 | head -10'
 # Really Good Stuff
 alias curl='curl -L'
 
-
 # - EXPORTS -
+export TERM="xterm-256colors"
+export HISTCONTROL=ignoredups:erasedups
+export EDITOR="vim"
+export VISUAL="nvim"
 
-# - PATH -
+export PYTHONENCODING='utf-8'
+
+export HISTSIZE='32768'
+export HISTFILESIZE="${HISTSIZE}"
+export HISTCONTROL='ignoreboth'
+
+# - FUNCTIONS -
+## Function Shortcuts
+
+
+
+# - SHOPT -
+shopt -s autocd
+shopt -s cdspell
+shopt -s cmdhist
+shopt -s dotglob
+shopt -s histappend
+shopt -s expand_aliases
+shopt -s checkwinsize
+
+#  -PATH -
+
+
