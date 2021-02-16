@@ -87,7 +87,7 @@ import XMonad.Util.SpawnOnce
 -- Super tough to find good docs on XFT Font Naming but found this gem
 -- https://keithp.com/~keithp/talks/xtc2001/paper/
 myFont :: String
-myFont = "xft:Fira Code Retina:style=Retina:size=12:antialias=true:hinting=true"
+myFont = "xft:FiraCode Nerd Font:style=Retina:size=12:antialias=true:hinting=true"
 
 myModMask :: KeyMask
 myModMask = mod4Mask -- ModKey is now the Windows Key (I have a Thinkpad 440p sue me.)
@@ -157,7 +157,7 @@ spawnSelected' lst = gridselect conf lst >>= flip whenJust spawn
 
 myAppGrid = [ ("Audacity", "audacity")
                  , ("Deadbeef", "deadbeef")
-                 , ("SpaceVim", "spacevim") --I will need to change this to support spacevim
+                 , ("NeoVim", "nvim") --I will need to change this to support spacevim
                  , ("Firefox", "firefox")
                  , ("Geany", "geany")
                  , ("Geary", "geary")
@@ -645,8 +645,8 @@ myKeys home =
         , ("M-p z", scrotPrompt home False)        -- scrotPrompt False
 
     -- Useful programs to have a keybinding for launch
-        , ("M-<Return>", spawn (myTerminal ++ " -e fish"))
-        , ("M-b", spawn (myBrowser ++ " www.youtube.com/c/DistroTube/"))
+        , ("M-<Return>", spawn (myTerminal))
+        , ("M-b", spawn (myBrowser ++ " https://wiki.archlinux.org/"))
         , ("M-M1-h", spawn (myTerminal ++ " -e htop"))
 
     -- Kill windows
