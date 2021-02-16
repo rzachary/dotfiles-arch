@@ -1,0 +1,15 @@
+"
+"
+"
+"
+"
+"
+"
+"
+"
+" Config File for vifm terminal file manager
+"====================================================
+
+set vicmd=nvim
+
+
