@@ -30,7 +30,7 @@ alias cdww='cd ~/Workspace/websites'
 alias vi="vim"
 
 ## Copy/Paste
-alias copy="tr -d '\n' | xclip" 
+alias copy="tr -d '\n' | xclip"
 
 ### Grep Stuff
 alias grep='grep --color=auto'
@@ -70,6 +70,12 @@ alias pscpu10='ps auxf | sort -nr -k 3 | head -10'
 # Really Good Stuff
 alias curl='curl -L'
 
+# Web Documentation Aliases
+alias docpy="lynx https://docs.python.org/3/"
+alias docpm="lynx https://pymongo.readthedocs.io/en/stable/"
+alias docgl="lynx https://golang.org/ref/spec"
+alias docglp="lynx https://golang.org/pkg/"
+
 # - EXPORTS -
 export TERM="xterm-256colors"
 export HISTCONTROL=ignoredups:erasedups
@@ -97,5 +103,3 @@ shopt -s expand_aliases
 shopt -s checkwinsize
 
 #  -PATH -
-
-
