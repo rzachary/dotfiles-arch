@@ -38,13 +38,13 @@ alias fgrep='fgrep --color=auto'
 alias egrep='egrep --color=auto'
 
 ## LS Color Changes
-colorflag="--color"
+colorflag="--color auto"
 export LS_COLORS=''
 
-alias l="ls -lF ${colorflag}"
-alias la="ls -lAF ${colorflag}"
-alias lsd="ls -lF ${colorflag} | grep --color=never '^d'"
-alias ls="command ls ${colorflag}"
+alias l="exa -lF ${colorflag}"
+alias la="exa -lAF ${colorflag}"
+alias lsd="exa -lF ${colorflag} | grep --color=never '^d'"
+alias ls="command exa ${colorflag}"
 
 # Add Flags
 alias cp='cp -i'
