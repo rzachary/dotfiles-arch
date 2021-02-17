@@ -1,10 +1,23 @@
 #!/usr/bin/env bash
 
+cd "${dirname "${BASH_SOURCE}"}";
+
 
 git pull origin main;
 
 function doIt(){
 	echo -e "Hello World"
+	rsync --exclude ".git/" \
+		--exclude ".DS_Store" \
+		--exclude ".osx" \
+		--exclude "bootstrap.sh" \
+		--exclude "README.MD" \
+		--exclude "LICENSE" \
+		--exclude "fonts/" \
+		--exclude "installers/" \
+		--exclude "update.sh" \
+		-avh --no-perms . ~;
+	source ~/.bashrc;
 }
 
 if [ "$1" == "--force" -o "$1" == "-f" ]; then
