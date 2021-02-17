@@ -1,0 +1,34 @@
+!
+!
+!
+!
+!
+! Xresources config file
+
+Xft.dpi: 96
+Xft.antialias: true
+Xft.hinting: true
+Xft.rgba: rgb
+Xft.autohint: true
+Xft.hintstyle: hintfull
+Xft.lcdfilter: lcdfilter
+
+XTerm*renderFont: true
+XTerm*faceName: xft:FiraCode Nerd Font Mono, \
+								xft:Mononoki Nerd Font, \
+                xft:Inconsolata Nerd Font Mono, \
+								xft:Monospace:style=Medium:size=12
+XTerm*faceSize: 11
+XTerm*utf8: 2
+Xterm*locale: true
+
+XTerm.vt100.translations: #override \n\
+	Ctrl <Key> j: smaller-vt-font() \n\
+	Ctrl <Key> k: larger-vt-font()
+
+
+XTerm*loginshell: true
+
+Xterm*savelines: 16384
+
+
