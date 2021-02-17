@@ -69,6 +69,7 @@ alias pscpu10='ps auxf | sort -nr -k 3 | head -10'
 
 # Really Good Stuff
 alias curl='curl -L'
+alias tb="nc termbin.com 9999"
 
 # Web Documentation Aliases
 alias docpy="lynx https://docs.python.org/3/"
@@ -92,6 +93,9 @@ export HISTCONTROL='ignoreboth'
 ## Function Shortcuts
 
 
+# - OPTIONS -
+
+
 
 # - SHOPT -
 shopt -s autocd
@@ -102,4 +106,33 @@ shopt -s histappend
 shopt -s expand_aliases
 shopt -s checkwinsize
 
-#  -PATH -
+
+# - SET VI MODE -
+set -o vi
+bind -m vi-command 'Control-l: clear-screen'
+bind -m vi-insert 'Control-l: clear-screen'
+
+#  - PATH -
+# Load the shell dotfiles, and then some:
+# * ~/.path can be used to extend `$PATH`.
+# * ~/.extra can be used for other settings you don’t want to commit.
+for file in ~/.{path,bash_prompt,exports,aliases,functions,extra}; do
+	[ -r "$file" ] && [ -f "$file" ] && source "$file";
+done;
+unset file;
+
+## CUSTOM PATHS
+export PATH=$PATH:/Users/rzachary/tools/google-cloud-sdk/
+
+## PATH SET
+if [ -d "$HOME/.bin" ] ;
+  then PATH="$HOME/.bin:$PATH"
+fi
+
+if [ -d "$HOME/.local/bin" ] ;
+  then PATH="$HOME/.local/bin:$PATH"
+fi
+
+if [ -d "$HOME/Applications" ] ;
+  then PATH="$HOME/Applications:$PATH"
+fi

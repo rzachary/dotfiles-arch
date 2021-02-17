@@ -1,1 +1,3 @@
-# Bash Configs for profile specific actions
+# Bash Configs for Start Up Specific actions
+
+[[ -f ~/.bashrc ]] && . ~/.bashrc
