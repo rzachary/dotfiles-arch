@@ -11,3 +11,9 @@ sudo pacman -S trayer
 
 # dolphin install
 sudo pacman -S dolphin
+
+# trash install
+sudo pacman -S trash-cli
+
+# install acpi
+sudo pacman -S acpi

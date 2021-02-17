@@ -18,3 +18,14 @@ sudo pacman -S tmux
 
 # Install Powerline
 sudo pacman -S powerline powerline-fonts powerline-vim
+
+# Install terminal tools
+sudo pacman -S rsync
+
+# Install wings and things
+sudo pacman -S bless 
+
+# Install character mapping
+sudo pacman -S gucharmap kcharselect
+
+
