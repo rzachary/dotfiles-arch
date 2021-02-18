@@ -374,7 +374,7 @@ editPrompt home = do
 
 openInEditor :: String -> X ()
 openInEditor path =
-    safeSpawn "emacsclient" ["-c", "-a", "emacs", path]
+    safeSpawn "nvim" []
 
 scrotPrompt :: String -> Bool -> X ()
 scrotPrompt home select = do
@@ -461,7 +461,7 @@ myScratchPads = [ NS "terminal" spawnTerm findTerm manageTerm
                 , NS "mocp" spawnMocp findMocp manageMocp
                 ]
   where
-    spawnTerm  = myTerminal ++ " -n scratchpad"
+    spawnTerm  = myTerminal ++ " -t scratchpad"
     findTerm   = resource =? "scratchpad"
     manageTerm = customFloating $ W.RationalRect l t w h
                where
@@ -584,7 +584,7 @@ myLayoutHook = avoidStruts $ mouseResize $ windowArrange $ T.toggleLayouts float
                                  ||| threeCol
                                  ||| threeRow
 
-myWorkspaces = [" dev ", " www ", " sys ", " doc ", " vbox ", " chat ", " mus ", " vid ", " gfx "]
+myWorkspaces = [" www ", " sys ", " doc ", " dev1 ", " dev2 ", " dev3 ", " dev4 ", " chat ", " misc "]
 -- myWorkspaces = [" 1 ", " 2 ", " 3 ", " 4 ", " 5 ", " 6 ", " 7 ", " 8 ", " 9 "]
 
 xmobarEscape :: String -> String

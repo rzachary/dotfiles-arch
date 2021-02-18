@@ -38,13 +38,13 @@ alias fgrep='fgrep --color=auto'
 alias egrep='egrep --color=auto'
 
 ## LS Color Changes
-colorflag="--color"
+colorflag="--color auto"
 export LS_COLORS=''
 
-alias l="ls -lF ${colorflag}"
-alias la="ls -lAF ${colorflag}"
-alias lsd="ls -lF ${colorflag} | grep --color=never '^d'"
-alias ls="command ls ${colorflag}"
+alias l="exa -lF ${colorflag}"
+alias la="exa -laF ${colorflag}"
+alias lsd="exa -lF ${colorflag} | grep --color=never '^d'"
+alias ls="command exa ${colorflag}"
 
 # Add Flags
 alias cp='cp -i'
@@ -71,31 +71,80 @@ alias pscpu10='ps auxf | sort -nr -k 3 | head -10'
 alias curl='curl -L'
 
 # - EXPORTS -
-export TERM="xterm-256colors"
 export HISTCONTROL=ignoredups:erasedups
 export EDITOR="vim"
 export VISUAL="nvim"
 
 export PYTHONENCODING='utf-8'
 
+export HISTFILE=${ZDOTDIR:-$HOME}/.zsh_history
 export HISTSIZE='32768'
 export HISTFILESIZE="${HISTSIZE}"
 export HISTCONTROL='ignoreboth'
 
-# - FUNCTIONS -
-## Function Shortcuts
+export LANG=en_US.UTF-8
 
+# - ZSH OPTIONS
+export ZSH=$HOME/.oh-my-zsh
+ZSH_THEME="agnoster"
 
+setopt NO_CASE_GLOB
+setopt EXTENDED_HISTORY
+setopt AUTO_CD
+setopt COMPLETE_ALIASES
+ZSH_DISABLE_COMPFIX="true"
+ENABLE_CORRECTION="true"
+COMPLETION_WAITING_DOTS="true"
+
+plugins=(
+	git
+)
+
+source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+source /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
+
+#autoload -Uz compinit
+#compinit
+
+zstyle ':completion:*' menu select
 
 # - SHOPT -
-shopt -s autocd
-shopt -s cdspell
-shopt -s cmdhist
-shopt -s dotglob
-shopt -s histappend
-shopt -s expand_aliases
-shopt -s checkwinsize
+# shopt -s autocd
+# shopt -s cdspell
+# shopt -s cmdhist
+# shopt -s dotglob
+# shopt -s histappend
+# shopt -s expand_aliases
+# shopt -s checkwinsize
 
-#  -PATH -
+# - SET VI MODE -
+set -o vi
+# bind -m vi-command 'Control-l: clear-screen'
+# bind -m vi-insert 'Control-l: clear-screen'
+
+#  - PATH -
+# Load the shell dotfiles, and then some:
+# * ~/.path can be used to extend `$PATH`.
+# * ~/.extra can be used for other settings you don’t want to commit.
+for file in ~/.{path,bash_prompt,exports,aliases,functions,extra}; do
+	[ -r "$file" ] && [ -f "$file" ] && source "$file";
+done;
+unset file;
+
+## CUSTOM PATHS
+export PATH=$PATH:/Users/rzachary/tools/google-cloud-sdk/
+
+## PATH SET
+if [ -d "$HOME/.bin" ] ;
+  then PATH="$HOME/.bin:$PATH"
+fi
+
+if [ -d "$HOME/.local/bin" ] ;
+  then PATH="$HOME/.local/bin:$PATH"
+fi
+
+if [ -d "$HOME/Applications" ] ;
+  then PATH="$HOME/Applications:$PATH"
+fi
 
 

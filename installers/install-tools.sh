@@ -1,7 +1,7 @@
 #!/bin/sh
 
 # Install Shells
-sudo pacman -S zsh zsh-completions
+sudo pacman -S zsh zsh-completions zsh-syntax-highlighting zsh-autosuggestions
 
 # Install main terminal 
 sudo pacman -S xterm termite
