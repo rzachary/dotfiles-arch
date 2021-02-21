@@ -17,3 +17,6 @@ sudo pacman -S trash-cli
 
 # install acpi
 sudo pacman -S acpi
+
+# install neofetch
+sudo pacman -S neofetch

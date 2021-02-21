@@ -1,12 +1,13 @@
 """"""""""
-"
-"
-"
-"
-"
-"
+"	 ______ _      ______
+"	 | | \ | |    |___  /
+"	 | |_/ / |       / /    - Rickey Zachary
+"	 |    /| |      / /     - website: https://rickeyzachary.com
+"	 | |\ \| |____./ /___   - twitter: zachary_rickey | github: rzachary (https://github.com/rzachary)
+"	 |_| \_\_____/\_____/
 "
 """"""""""
+
 """"" === VIMRC File for Arch Linux ====
 let skip_defaults_vim=1
 set nocompatible

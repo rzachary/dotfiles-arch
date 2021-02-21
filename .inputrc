@@ -1,7 +1,18 @@
-#
-#
-#
+#	 ______ _      ______
+#	 | | \ | |    |___  /
+#	 | |_/ / |       / /    - Rickey Zachary
+#	 |    /| |      / /     - website: https://rickeyzachary.com
+#	 | |\ \| |____./ /___   - twitter: zachary_rickey | github: rzachary (https://github.com/rzachary)
+#	 |_| \_\_____/\_____/
 #
 # InputRC Config File
 
+set editing-mode vi
 
+$if term=linux
+	set vi-ins-mode-string \1\e[?0c\2
+	set vi-cmd-mode-string \1\e[?8c\2
+$else
+	set vi-ins-mode-string \1\e[6 q\2
+	set vi-cmd-mode-string \1\e[2 q\2
+$endif

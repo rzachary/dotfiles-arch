@@ -99,7 +99,7 @@ myBrowser :: String
 myBrowser = "firefox"
 
 myEditor :: String
-myEditor = myTerminal ++ " -e vim "
+myEditor = myTerminal ++ " -e  nvim"
 
 myBorderWidth :: Dimension
 myBorderWidth = 2
@@ -157,7 +157,7 @@ spawnSelected' lst = gridselect conf lst >>= flip whenJust spawn
 
 myAppGrid = [ ("Audacity", "audacity")
                  , ("Deadbeef", "deadbeef")
-                 , ("NeoVim", "nvim") --I will need to change this to support spacevim
+                 , ("NeoVim", "nvim") 
                  , ("Firefox", "firefox")
                  , ("Geany", "geany")
                  , ("Geary", "geary")
@@ -596,7 +596,7 @@ xmobarEscape = concatMap doubleLts
 myClickableWorkspaces :: [String]
 myClickableWorkspaces = clickable . (map xmobarEscape)
                -- $ [" 1 ", " 2 ", " 3 ", " 4 ", " 5 ", " 6 ", " 7 ", " 8 ", " 9 "]
-               $ [" dev ", " www ", " sys ", " doc ", " vbox ", " chat ", " mus ", " vid ", " gfx "]
+               $ [ " www ", " sys ", " doc ", " dev1 ", " dev2 ", " dev3 ", " dev4 ", " chat ", " misc "]
   where
         clickable l = [ "<action=xdotool key super+" ++ show (n) ++ ">" ++ ws ++ "</action>" |
                       (i,ws) <- zip [1..9] l,

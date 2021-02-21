@@ -38,12 +38,12 @@ alias fgrep='fgrep --color=auto'
 alias egrep='egrep --color=auto'
 
 ## LS Color Changes
-colorflag="--color auto"
+colorflag="--color=always"
 export LS_COLORS=''
 
 alias l="exa -lF ${colorflag}"
 alias la="exa -laF ${colorflag}"
-alias lsd="exa -lF ${colorflag} | grep --color=never '^d'"
+alias lsd="exa -lF ${colorflag} | grep --color=never"
 alias ls="command exa ${colorflag}"
 
 # Add Flags
@@ -103,10 +103,9 @@ plugins=(
 source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 source /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
 
-#autoload -Uz compinit
-#compinit
-
 zstyle ':completion:*' menu select
+
+source $ZSH/oh-my-zsh.sh
 
 # - SHOPT -
 # shopt -s autocd
@@ -126,13 +125,23 @@ set -o vi
 # Load the shell dotfiles, and then some:
 # * ~/.path can be used to extend `$PATH`.
 # * ~/.extra can be used for other settings you don’t want to commit.
-for file in ~/.{path,bash_prompt,exports,aliases,functions,extra}; do
+for file in ~/.{path,zprompt,exports,aliases,functions,extra}; do
 	[ -r "$file" ] && [ -f "$file" ] && source "$file";
 done;
 unset file;
 
 ## CUSTOM PATHS
+GEM_HOME="$(ruby -e 'puts Gem.user_dir')"
+
+export PATH="$PATH:$GEM_HOME/bin"
 export PATH=$PATH:/Users/rzachary/tools/google-cloud-sdk/
+
+### - GO LANG DEV
+
+export GOBIN="$HOME/.local/go/bin"
+export GOPATH="$HOME/.local/go"
+
+export PATH="$PATH:$HOME/.local/go/bin"
 
 ## PATH SET
 if [ -d "$HOME/.bin" ] ;

@@ -8,14 +8,21 @@ sudo pacman -S neovim
 
 # Install Compilers | Interpreters | Programming Tooling
 ## C/C++
-sudo pacman -S clang
+sudo pacman -S clang lld lldb llc++
+
+## C/C++ Helpers
+sudo pacman -S valgrind
 
 ## Java | OpenJDK | Oracle Java
 sudo pacman -S jre-openjdk jdk-openjdk openjdk-doc
-sudo yay -S bytecode-viewer cfr krakatau-git 
-sudo yay -S jre jdk
+yay -S bytecode-viewer cfr krakatau-git 
+yay -S jre jdk
 # Fix: To solve potential MS Fonts issue
-sudo yay -S ttf-ms-fonts
+yay -S ttf-ms-fonts
+
+## Javascript 
+sudo pacman -S yarn
+sudo pacman -S npm nodejs
 
 ## Python
 sudo pacman -S python # I think virtualenv comes with this in pacman
@@ -35,6 +42,7 @@ sudo pacman -S leiningen
 ## Ruby and jekyll
 sudo pacman -S ruby ruby-rdoc ruby-docs
 sudo pacman -S rubygems # Bundler will be handled post install dueto some config stuff
+# gem install bundler
 echo "Remember to install Bundler"
 
 # Build Tools | Packagers
@@ -64,6 +72,9 @@ tar -xvf ~/tools/google-cloud-sdk-328.0.0-linux-x86_64.tar.gz
 ./tools/google-cloud-sdk/install.sh
 
 ## MSFT Azure CLI
+# I might add in a statement that checks for the shell and alters this to run in the correct shell
+curl -L https://aka.ms/InstallAzureCli | bash
+
 
 ## Install Docker
 sudo pacman -S docker

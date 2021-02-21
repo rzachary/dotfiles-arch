@@ -1,4 +1,6 @@
 #!/bin/sh
 
 echo 'Installing WeeChat...'
-pacman -S weechat
+sudo pacman -S weechat
+sudo pacman -S python-websocket-client
+

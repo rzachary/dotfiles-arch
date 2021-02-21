@@ -6,10 +6,14 @@ cd "${dirname "${BASH_SOURCE}"}";
 git pull origin main;
 
 function doIt(){
-	echo -e "Hello World"
+	echo -e "Copying Dotfiles and config to Home location."
 	rsync --exclude ".git/" \
 		--exclude ".DS_Store" \
 		--exclude ".osx" \
+		--exclude "install-all.sh" \
+		--exclude "fonts" \
+		--exclude ".git" \
+		--exclude ".gitignore" \
 		--exclude "bootstrap.sh" \
 		--exclude "README.MD" \
 		--exclude "LICENSE" \
@@ -17,7 +21,7 @@ function doIt(){
 		--exclude "installers/" \
 		--exclude "update.sh" \
 		-avh --no-perms . ~;
-	source ~/.bashrc;
+	source ~/.zshrc;
 }
 
 if [ "$1" == "--force" -o "$1" == "-f" ]; then
