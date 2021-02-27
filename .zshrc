@@ -27,7 +27,7 @@ alias cdw='cd ~/Workspace'
 alias cdww='cd ~/Workspace/websites'
 
 ## Tools - Shortcuts
-alias vi="vim"
+alias vi="nvim"
 
 ## Copy/Paste
 alias copy="tr -d '\n' | xclip" 
@@ -38,13 +38,15 @@ alias fgrep='fgrep --color=auto'
 alias egrep='egrep --color=auto'
 
 ## LS Color Changes
-colorflag="--color=always"
-export LS_COLORS=''
+export colorflag="--color=always"
+export LS_COLORS=$LS_COLOR:"di=1;35"
 
 alias l="exa -lF ${colorflag}"
 alias la="exa -laF ${colorflag}"
-alias lsd="exa -lF ${colorflag} | grep --color=never"
+alias lsd="exa -lFD ${colorflag}"
 alias ls="command exa ${colorflag}"
+alias lx="exa -ax ${colorflag}"
+
 
 # Add Flags
 alias cp='cp -i'
@@ -72,7 +74,7 @@ alias curl='curl -L'
 
 # - EXPORTS -
 export HISTCONTROL=ignoredups:erasedups
-export EDITOR="vim"
+export EDITOR="nvim"
 export VISUAL="nvim"
 
 export PYTHONENCODING='utf-8'
