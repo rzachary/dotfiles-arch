@@ -21,6 +21,7 @@ sudo pacman -S powerline powerline-fonts powerline-vim
 
 # Install terminal tools
 sudo pacman -S rsync
+sudo pacman -S htop
 
 # Install wings and things
 sudo pacman -S bless 

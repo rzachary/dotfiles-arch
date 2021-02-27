@@ -20,3 +20,6 @@ sudo pacman -S acpi
 
 # install neofetch
 sudo pacman -S neofetch
+
+# install things
+sudo pacman -S meld pcmanfm
