@@ -37,7 +37,8 @@ URxvt*imLocale: en_US.UTF-8
 URxvt*termName: rxvt-unicode-256color
 URxvt*buffered: false
 URxvt.intensityStyles: false
-URxvt.font: xft:Mononoki Nerd Font:size=12, \
+URxvt.font: xft:FiraCode Nerd Font Mono:size=10, \
+            xft:Mononoki Nerd Font:size=10, \
             xft:JoyPixels:size=12, \
             xft:Monospace:style=Medium:size=12
 URxvt.saveLines: 2000
