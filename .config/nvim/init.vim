@@ -35,7 +35,17 @@ Plug 'chriskempson/base16-vim'
 
 " ======== autocomplete
 " I was using autocomplete but it sucks so I no longer use any
+Plug 'neoclide/coc.nvim'
+"Plug 'valloric/youcompleteme'
+" Neovim lsp Plugins
+"Plug 'neovim/nvim-lspconfig'
+"Plug 'nvim-lua/completion-nvim'
+"Plug 'tjdevries/nlua.nvim'
+"Plug 'tjdevries/lsp_extensions.nvim'
 
+" Neovim Tree shitter
+"Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
+"Plug 'nvim-treesitter/playground'
 
 "======== Cloujure Plugins
 Plug 'Olical/conjure', {'tag': 'v4.3.1'}
@@ -51,7 +61,7 @@ Plug 'guns/vim-sexp'
 Plug 'tpope/vim-sexp-mappings-for-regular-people'
 
 " Auto-close parens
-Plug 'jiangmiao/auto-pairs', { 'tag': 'v2.0.0' }
+"Plug 'jiangmiao/auto-pairs', { 'tag': 'v2.0.0' }
 
 " Completion support
 Plug 'Shougo/deoplete.nvim'
@@ -69,21 +79,28 @@ Plug 'luochen1990/rainbow' " parenthesis rainbows for matching parenthesis
 Plug 'tpope/vim-dispatch'
 Plug 'tpope/vim-surround'
 Plug 'scrooloose/syntastic' " syntax checker
+" -- Go Lang
+Plug 'tweekmonster/gofmt.vim'
+Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
+" -- C\C++
 
-"=====
+
+"===== FZF Goodness
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
+Plug 'stsewd/fzf-checkout.vim'
 
 " ======== Git
-Plug 'airblade/vim-gitgutter'
-Plug 'jreybert/vimagit'
 Plug 'tpope/vim-fugitive'
-
+Plug 'junegunn/gv.vim'
 
 " ======== Tools
 Plug 'vifm/vifm.vim'
 Plug 'vimwiki/vimwiki'
 "Plug 'dyng/ctrlsf.vim' " nice searthing but will turn it on later when
+Plug 'tpope/vim-liquid'
+Plug 'tpope/vim-markdown'
+Plug 'vim-utils/vim-man'
 
 call plug#end()
 
@@ -101,6 +118,8 @@ set number relativenumber       " Display line numbers
 set clipboard=unnamedplus       " Copy/paste between vim and other programs.
 syntax enable
 let g:rehash256 = 1
+set splitbelow
+set splitright
 
 "------------- ColorScheme Stuff
 colorscheme gruvbox
@@ -126,7 +145,6 @@ let g:ale_linters = {
       \ 'clojure': ['clj-kondo']
       \}
 
-"---------- Startify Configs
 
 
 "---------- Key Mappings
@@ -137,4 +155,45 @@ map <F3> :colorscheme hybrid_reverse<CR>
 map <F4> :colorscheme PaperColor<CR>
 map <F5> :colorscheme spacegray<CR>
 
+nnoremap <C-J> <C-W><C-J>
+nnoremap <C-K> <C-W><C-K>
+nnoremap <C-L> <C-W><C-L>
+nnoremap <C-H> <C-W><C-H>
+
 nnoremap <C-p> :GFiles<CR>
+
+
+"---------- Startify Configs
+let g:ascii = [
+      \'                           ______                         ',
+      \'                     _.-*""      "`*-._                   ',
+      \'                _.-*"                  `*-._              ',
+      \'             .-"                            `-.           ',
+      \'  /`-.    .-"                  _.              `-.        ',
+      \' :    `.."                  .-`_ .                `.      ',
+      \' |    ."                 .-`_.` \ .                 \     ',
+      \' |   /                 .` .*     ;               .-`"     ',
+      \' :   L                    `.     | ;          .-`         ',
+      \'  \.` `*.          .-*"*-.  `.   ; |        .`            ',
+      \'  /      \        `       `.  `-`  ;      .`              ',
+      \' : .""`.  .       .-*"`*-.  \     .      (_               ',
+      \' |              .`        \  .             `*-.           ',
+      \' |.     .      /           ;                   `-.        ',
+      \' :    db      "       d$b  |                      `-.     ',
+      \' .   :PT;.   "       :P"T; :                         `.   ',
+      \' :   :bd;   "        :b_d; :                           \  ',
+      \' |   :$$; `"         :$$$; |                            \ ',
+      \' |    TP              T$P  "                             ;',
+      \' :                        /.-*""`.                       |',
+      \'.sdP^T$bs.               /"       \                       ',
+      \'$$$._.$$$$b.--._      _.`   .--.   ;                      ',
+      \'`*$$$$$$P*"     `*--*`     `  / \  :                      ',
+      \'   \                        .`   ; ;                      ',
+      \'    `.                  _.-"    " /                       ',
+      \'      `*-.                      .`                        ',
+      \'          `*-._            _.-*`                          ',
+      \'               `*=--..--=*`                               ',
+      \'                                                          ',
+      \ ]
+let g:startify_custom_header =
+      \ startify#center(g:ascii + startify#fortune#boxed())
