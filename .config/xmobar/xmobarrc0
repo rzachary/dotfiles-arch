@@ -8,6 +8,7 @@ Config { font    = "xft:FuraCode Nerd Font Mono:weight=bold:pixelsize=9:antialia
                            ]
        , bgColor = "#282c34"
        , fgColor = "#ff6c6b"
+       , alpha = 224
        , position = Static { xpos = 0 , ypos = 0, width = 1600, height = 24 }
        , lowerOnStart = True
        , hideOnStart = False

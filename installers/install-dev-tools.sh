@@ -61,8 +61,8 @@ sudo pacman -S onionshare
 sudo pacman -S gunicorn
 
 ## AWS CLI
-curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip"
-unzip awscliv2.zip
+curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "~/tools/awscliv2.zip"
+unzip ~/tools/awscliv2.zip
 sudo ./aws/install -i /usr/local/aws-cli -b /usr/local/bin
 
 ## Google Cloud CLI
@@ -78,7 +78,7 @@ curl -L https://aka.ms/InstallAzureCli | bash
 
 ## Install Docker
 sudo pacman -S docker
-
+sudo pacman -S docker-compose
 
 ## Install Kubernetes and helpers
 sudo yay etcd

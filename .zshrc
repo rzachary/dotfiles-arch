@@ -22,12 +22,13 @@ alias -- -='cd --'
 ## Navigation - Shortcuts
 alias d='cd ~/Documents'
 alias dp='cd ~/Dropbox'
-alias dl='cd ~/Downloads'
+alias dn='cd ~/Downloads'
 alias cdw='cd ~/Workspace'
 alias cdww='cd ~/Workspace/websites'
 
 ## Tools - Shortcuts
 alias vi="nvim"
+alias vim="nvim"
 
 ## Copy/Paste
 alias copy="tr -d '\n' | xclip" 
@@ -39,14 +40,12 @@ alias egrep='egrep --color=auto'
 
 ## LS Color Changes
 export colorflag="--color=always"
-export LS_COLORS=$LS_COLOR:"di=1;35"
 
-alias l="exa -lF ${colorflag}"
-alias la="exa -laF ${colorflag}"
-alias lsd="exa -lFD ${colorflag}"
-alias ls="command exa ${colorflag}"
-alias lx="exa -ax ${colorflag}"
-
+alias l='exa -lF ${colorflag}'
+alias la='exa -laF ${colorflag}'
+alias lsd='exa -lFD ${colorflag}'
+alias ls='command exa ${colorflag}'
+alias lx='exa -ax ${colorflag}'
 
 # Add Flags
 alias cp='cp -i'
@@ -55,7 +54,7 @@ alias rm='rm -i'
 alias df='df -h'
 alias free='free -m'
 alias lynx='lynx --cfg=~/.lynx/lynx.cfg -lss=~/.lynx/lynx.lss -vikeys'
-alias vifm='./.config/vifm/scripts/vifmrun'
+alias vifm='~/.config/vifm/scripts/vifmrun'
 
 # reporting
 alias syserrors="sudo journalctl -p 3 -xb"
@@ -117,6 +116,9 @@ source $ZSH/oh-my-zsh.sh
 # shopt -s histappend
 # shopt -s expand_aliases
 # shopt -s checkwinsize
+
+# - COLORS -
+test -r ~/.dir_colors && eval $(dircolors ~/.dir_colors)
 
 # - SET VI MODE -
 set -o vi
