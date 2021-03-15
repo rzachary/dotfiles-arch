@@ -32,20 +32,19 @@ Plug 'kristijanhusak/vim-hybrid-material'
 Plug 'NLKNguyen/papercolor-theme'
 Plug 'ajh17/Spacegray.vim'
 Plug 'chriskempson/base16-vim'
+Plug 'junegunn/rainbow_parentheses.vim'
 
 " ======== autocomplete
-" I was using autocomplete but it sucks so I no longer use any
-Plug 'neoclide/coc.nvim'
-"Plug 'valloric/youcompleteme'
+" Trying out the native neovim lsp plugins
 " Neovim lsp Plugins
-"Plug 'neovim/nvim-lspconfig'
-"Plug 'nvim-lua/completion-nvim'
-"Plug 'tjdevries/nlua.nvim'
-"Plug 'tjdevries/lsp_extensions.nvim'
+Plug 'neovim/nvim-lspconfig'
+Plug 'nvim-lua/completion-nvim'
+Plug 'tjdevries/nlua.nvim'
+Plug 'tjdevries/lsp_extensions.nvim'
 
 " Neovim Tree shitter
-"Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
-"Plug 'nvim-treesitter/playground'
+Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
+Plug 'nvim-treesitter/playground'
 
 "======== Cloujure Plugins
 Plug 'Olical/conjure', {'tag': 'v4.3.1'}
@@ -80,10 +79,16 @@ Plug 'tpope/vim-dispatch'
 Plug 'tpope/vim-surround'
 Plug 'scrooloose/syntastic' " syntax checker
 " -- Go Lang
-Plug 'tweekmonster/gofmt.vim'
 Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
 " -- C\C++
 
+" -- Python
+
+" -- Haskell
+
+" -- Java
+
+" -- EMCAScript
 
 "===== FZF Goodness
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
@@ -129,8 +134,12 @@ let g:airline_powerline_fonts = 1
 
 "------------- Nerd Tree Config
 " Uncomment to autostart the NERDTree
-" autocmd vimenter * NERDTree
+autocmd vimenter * NERDTree | wincmd p
 map <C-n> :NERDTreeToggle<CR>
+nnoremap <leader>n :NERDTreeFocus<CR>
+nnoremap <C-n> :NERDTree<CR>
+nnoremap <C-t> :NERDTreeToggle<CR>
+nnoremap <C-f> :NERDTreeFind<CR>
 let g:NERDTreeDirArrowExpandable = '►'
 let g:NERDTreeDirArrowCollapsible = '▼'
 let NERDTreeShowLineNumbers=1
@@ -145,9 +154,35 @@ let g:ale_linters = {
       \ 'clojure': ['clj-kondo']
       \}
 
+"------ Language Servers
+" -- Bash
+lua require'lspconfig'.bashls.setup{}
+
+lua <<EOF
+-- GoLang
+lspconfig = require "lspconfig"
+lspconfig.gopls.setup {
+    cmd = {"gopls", "serve"},
+    filetypes = {"go", "gomod" },
+    settings = {
+      gopls = {
+        analyses = {
+          unusedparams = true,
+        },
+        staticcheck = true,
+      },
+    },
+  }
+EOF
+
+"let g:go_def_mode='gopls'
+"let g:go_info_mode='gopls'}
+
 
 
 "---------- Key Mappings
+let mapleader = " "
+nmap <leader>r :so ~/.config/nvim/init.vim<CR>
 
 map <F1> :colorscheme gruvbox<CR>
 map <F2> :colorscheme base16-default-dark<CR>
