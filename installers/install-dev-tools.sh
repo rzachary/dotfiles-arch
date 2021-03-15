@@ -61,7 +61,7 @@ sudo pacman -S onionshare
 sudo pacman -S gunicorn
 
 ## AWS CLI
-curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "~/tools/awscliv2.zip"
+curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o ~/tools/awscliv2.zip
 unzip ~/tools/awscliv2.zip
 sudo ./aws/install -i /usr/local/aws-cli -b /usr/local/bin
 
@@ -73,7 +73,7 @@ tar -xvf ~/tools/google-cloud-sdk-328.0.0-linux-x86_64.tar.gz
 
 ## MSFT Azure CLI
 # I might add in a statement that checks for the shell and alters this to run in the correct shell
-curl -L https://aka.ms/InstallAzureCli | bash
+curl -L https://aka.ms/InstallAzureCli | zsh 
 
 
 ## Install Docker
