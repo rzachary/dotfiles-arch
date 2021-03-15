@@ -29,4 +29,8 @@ sudo pacman -S bless
 # Install character mapping
 sudo pacman -S gucharmap kcharselect
 
+# Install vifm stuff
+sudo pacman -S vifm
+sudo pacman -S ueberzug
+
 
