@@ -47,6 +47,12 @@ alias lsd='exa -lFD ${colorflag}'
 alias ls='command exa ${colorflag}'
 alias lx='exa -ax ${colorflag}'
 
+# Web Documentation Aliases
+alias docpy="lynx https://docs.python.org/3/"
+alias docpm="lynx https://pymongo.readthedocs.io/en/stable/"
+alias docgl="lynx https://golang.org/ref/spec"
+alias docglp="lynx https://golang.org/pkg/"
+
 # Add Flags
 alias cp='cp -i'
 alias mv='mv -i'
@@ -97,8 +103,11 @@ ZSH_DISABLE_COMPFIX="true"
 ENABLE_CORRECTION="true"
 COMPLETION_WAITING_DOTS="true"
 
+fpath+=~/.zfunc
+
 plugins=(
 	git
+	poetry
 )
 
 source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
