@@ -46,6 +46,12 @@ Plug 'tjdevries/lsp_extensions.nvim'
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 Plug 'nvim-treesitter/playground'
 
+" Telescope
+Plug 'nvim-lua/popup.nvim'
+Plug 'nvim-lua/plenary.nvim'
+Plug 'nvim-telescope/telescope.nvim'
+Plug 'nvim-telescope/telescope-fzy-native.nvim'
+
 "======== Cloujure Plugins
 Plug 'Olical/conjure', {'tag': 'v4.3.1'}
 
@@ -91,9 +97,9 @@ Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
 " -- EMCAScript
 
 "===== FZF Goodness
-Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
-Plug 'junegunn/fzf.vim'
-Plug 'stsewd/fzf-checkout.vim'
+" Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
+" Plug 'junegunn/fzf.vim'
+" Plug 'stsewd/fzf-checkout.vim'
 
 " ======== Git
 Plug 'tpope/vim-fugitive'
@@ -106,6 +112,7 @@ Plug 'vimwiki/vimwiki'
 Plug 'tpope/vim-liquid'
 Plug 'tpope/vim-markdown'
 Plug 'vim-utils/vim-man'
+Plug 'junegunn/goyo.vim'
 
 call plug#end()
 
@@ -126,6 +133,10 @@ let g:rehash256 = 1
 set splitbelow
 set splitright
 
+" ------ Leader Key Remap
+let mapleader = " "
+
+
 "------------- ColorScheme Stuff
 colorscheme gruvbox
 set background=dark
@@ -135,10 +146,10 @@ let g:airline_powerline_fonts = 1
 "------------- Nerd Tree Config
 " Uncomment to autostart the NERDTree
 autocmd vimenter * NERDTree | wincmd p
-map <C-n> :NERDTreeToggle<CR>
+" map <C-t> :NERDTreeToggle<CR>
 nnoremap <leader>n :NERDTreeFocus<CR>
 nnoremap <C-n> :NERDTree<CR>
-nnoremap <C-t> :NERDTreeToggle<CR>
+nnoremap <leader>t :NERDTreeToggle<CR>
 nnoremap <C-f> :NERDTreeFind<CR>
 let g:NERDTreeDirArrowExpandable = '►'
 let g:NERDTreeDirArrowCollapsible = '▼'
@@ -146,6 +157,9 @@ let NERDTreeShowLineNumbers=1
 let NERDTreeShowHidden=1
 let NERDTreeMinimalUI = 1
 let g:NERDTreeWinSize=38
+" Exit Vim if NERDTree is the only window left.
+autocmd BufEnter * if tabpagenr('$') == 1 && winnr('$') == 1 && exists('b:NERDTree') && b:NERDTree.isTabTree() |
+    \ quit | endif
 
 "---------- Conjure Configs
 " Lint configuration - clj-kondo
@@ -154,34 +168,13 @@ let g:ale_linters = {
       \ 'clojure': ['clj-kondo']
       \}
 
-"------ Language Servers
-" -- Bash
-lua require'lspconfig'.bashls.setup{}
+let g:go_def_mode='gopls'
+let g:go_info_mode='gopls'
 
-lua <<EOF
--- GoLang
-lspconfig = require "lspconfig"
-lspconfig.gopls.setup {
-    cmd = {"gopls", "serve"},
-    filetypes = {"go", "gomod" },
-    settings = {
-      gopls = {
-        analyses = {
-          unusedparams = true,
-        },
-        staticcheck = true,
-      },
-    },
-  }
-EOF
-
-"let g:go_def_mode='gopls'
-"let g:go_info_mode='gopls'}
-
-
+set completeopt=menuone,noinsert,noselect
+let g:completion_matching_strategy_list = ['exact', 'substring', 'fuzzy']
 
 "---------- Key Mappings
-let mapleader = " "
 nmap <leader>r :so ~/.config/nvim/init.vim<CR>
 
 map <F1> :colorscheme gruvbox<CR>
@@ -195,8 +188,28 @@ nnoremap <C-K> <C-W><C-K>
 nnoremap <C-L> <C-W><C-L>
 nnoremap <C-H> <C-W><C-H>
 
-nnoremap <C-p> :GFiles<CR>
+nnoremap <leader>vd :lua vim.lsp.buf.definition()<CR>
+nnoremap <leader>vi :lua vim.lsp.buf.implementation()<CR>
+nnoremap <leader>vsh :lua vim.lsp.buf.signature_help()<CR>
+nnoremap <leader>vrr :lua vim.lsp.buf.references()<CR>
+nnoremap <leader>vrn :lua vim.lsp.buf.rename()<CR>
+nnoremap <leader>vh :lua vim.lsp.buf.hover()<CR>
+nnoremap <leader>vca :lua vim.lsp.buf.code_action()<CR>
+nnoremap <leader>vsd :lua vim.lsp.util.show_line_diagnostics(); vim.lsp.util.show_line_diagnostics()<CR>
+nnoremap <leader>vn :lua vim.lsp.diagnostic.goto_next()<CR>
+nnoremap <leader>vll :lua vim.lsp.diagnostic.set_loclist()<CR>
 
+nnoremap <leader>ps :lua require('telescope.builtin').grep_string({ search = vim.fn.input("Grep For > ")})<CR>
+nnoremap <C-p> :lua require('telescope.builtin').git_files()<CR>
+nnoremap <Leader>pf :lua require('telescope.builtin').find_files()<CR>
+
+nnoremap <leader>pw :lua require('telescope.builtin').grep_string { search = vim.fn.expand("<cword>") }<CR>
+nnoremap <leader>pb :lua require('telescope.builtin').buffers()<CR>
+nnoremap <leader>vh :lua require('telescope.builtin').help_tags()<CR>
+nnoremap <leader>vrc :lua require('rzachary.telescope').search_dotfiles()<CR>
+nnoremap <leader>gc :lua require('rzacharyrtelescope').git_branches()<CR>
+
+nnoremap <leader>dd :Goyo
 
 "---------- Startify Configs
 let g:ascii = [
